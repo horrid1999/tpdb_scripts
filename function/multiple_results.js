@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         ThePosterDB Bulk Tab Opener (Minimized)
+// @name         ThePosterDB: Bulk Tab Opener (Minimized)
 // @namespace    http://tampermonkey.net/
 // @version      1.3
 // @description  Minimized multi-tab opener: Opens top # search results, each in new tabs
