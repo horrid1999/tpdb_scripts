@@ -6,6 +6,7 @@
 // @match        https://theposterdb.com/search*
 // @author       horrid1999
 // @grant        none
+// @license      MIT
 // ==/UserScript==
 
 (function() {
