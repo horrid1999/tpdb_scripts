@@ -6,6 +6,7 @@
 // @author horrid1999
 // @match https://theposterdb.com/posters/*
 // @grant GM_xmlhttpRequest
+// @license MIT
 // ==/UserScript==
 
 (function() {
