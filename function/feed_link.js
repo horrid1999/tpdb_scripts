@@ -1,9 +1,8 @@
-
 // ==UserScript==
 // @name         ThePosterDB: Feed Link Changer
 // @namespace    https://theposterdb.com/
-// @version      1.1
-// @description  Modifies the Feed link to include specific query parameters.
+// @version      1.2
+// @description  Modifies the main Feed navigation link with preferred filters.
 // @author       horrid1999
 // @match        https://theposterdb.com/*
 // @grant        none
@@ -16,27 +15,30 @@
     const feedURL = 'https://theposterdb.com/feed?category=All&textless=All&language=all&sort=Recent&variation=all';
 
     function updateFeedLink() {
-        const links = document.querySelectorAll('a');
+        document.querySelectorAll('a[href]').forEach(link => {
+            const url = new URL(link.href);
 
-        links.forEach(link => {
-            if (link.href.split('?')[0].replace(/\/$/, '') === 'https://theposterdb.com/feed') {
+            // Only modify the main Feed link.
+            // Never modify pagination links.
+            if (
+                url.origin === 'https://theposterdb.com' &&
+                url.pathname === '/feed' &&
+                !url.searchParams.has('page')
+            ) {
                 if (link.href !== feedURL) {
                     link.href = feedURL;
-                    console.log('[TPDb] Feed link updated:', link.href);
+                    console.log('[TPDb] Main Feed link updated');
                 }
             }
         });
     }
 
-    // Initial attempt
     updateFeedLink();
 
-    // Watch for dynamically added or rebuilt navigation elements
     const observer = new MutationObserver(updateFeedLink);
 
     observer.observe(document.documentElement, {
         childList: true,
         subtree: true
     });
-
 })();
